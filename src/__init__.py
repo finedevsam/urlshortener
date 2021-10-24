@@ -37,7 +37,7 @@ def create_app(test_config=None):
     db.init_app(app)
     
     JWTManager(app)
-    create_database(app)
+    # create_database(app)
     
     app.register_blueprint(auth)
     app.register_blueprint(bookmarks)
@@ -62,11 +62,12 @@ def create_app(test_config=None):
     def hendle_404(e):
         return jsonify({"error": "Oop!! We run into an error. Our Engineers are working to to fix it"}), HTTP_500_INTERNAL_SERVER_ERROR
     
+    
+    def create_database(app):
+        db.create_all(app=app)
+        # print("Database Created")
+    
     return app
-
-def create_database(app):
-    db.create_all(app=app)
-    # print("Database Created")
     
     
 app = create_app()

@@ -23,7 +23,8 @@ def create_app(test_config=None):
     if test_config is None:
         app.config.from_mapping(
             SECRET_KEY=os.environ.get("FLASK_SECRET_KEY"),
-            SQLALCHEMY_DATABASE_URI = "mysql+pymysql://{}:{}@{}/{}?charset=utf8mb4".format(db_user, db_pass, db_host, db_name),
+            SQLALCHEMY_DATABASE_URI = "sqlite:///bookmarks.db",
+            # SQLALCHEMY_DATABASE_URI = "mysql+pymysql://{}:{}@{}/{}?charset=utf8mb4".format(db_user, db_pass, db_host, db_name),
             SQLALCHEMY_TRACK_MODIFICATIONS= os.environ.get('SQLALCHEMY_TRACK_MODIFICATIONS', default=False),
             JWT_SECRET_KEY=os.environ.get('JWT_SECRET_KEY'),
             SWAGGER = {
